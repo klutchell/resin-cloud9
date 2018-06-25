@@ -9,13 +9,15 @@ ENV INITSYSTEM on
 ENV C9_WORKSPACE /workspace
 ENV C9_PORT 8080
 
+# set the correct uname for rpi3
+RUN cp "$(which uname)" "/bin/uname.orig" \
+	&& echo '#!/bin/sh\n/bin/uname.orig $* | sed "s/armv8l/armv7l/"' > "$(which uname)"
+
 # install updates and common utilities
 RUN DEBIAN_FRONTEND=noninteractive \
 	apt-get update && apt-get install -yq --no-install-recommends \
 	apt-transport-https \
 	bash-completion \
-	ca-certificates \
-	curl \
 	tmux \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -25,10 +27,6 @@ RUN curl -sSL https://get.docker.com/ | sh
 
 # work in app dir for cloud9
 WORKDIR /usr/src/app
-
-# set the correct uname for rpi3
-RUN cp "$(which uname)" "/bin/uname.orig" \
-	&& echo '#!/bin/sh\n/bin/uname.orig $* | sed "s/armv8l/armv7l/"' > "$(which uname)"
 
 # clone & install cloud9 core 
 RUN git clone --depth 1 https://github.com/c9/core.git . \
