@@ -40,6 +40,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# replace ExecStart=/usr/bin/dockerd -H fd:// in docker.service
+RUN sed -i -e 's|^ExecStart=|ExecStart=/usr/bin/dockerd --iptables=false --dns 8.8.8.8|' \
+	/lib/systemd/system/docker.service
+
 # work in app dir for cloud9
 WORKDIR /usr/src/app
 
