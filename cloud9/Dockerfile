@@ -40,7 +40,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# add options to docker service
+# add custom flags to docker service
 RUN sed -r -i -e 's|^(ExecStart=.+)$|\1 --iptables=false|' \
 	/lib/systemd/system/docker.service
 
@@ -55,8 +55,8 @@ RUN git clone --depth 1 https://github.com/c9/core.git . \
 # copy src files
 COPY start.sh ./
 
-# store c9 workspace in a volume
-VOLUME $C9_WORKSPACE /root/.c9
+# store c9 workspace and home dir in a volume
+VOLUME $C9_WORKSPACE /root
 
 # run start script on boot
 CMD ["/bin/sh", "start.sh"]
