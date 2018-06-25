@@ -18,12 +18,27 @@ RUN DEBIAN_FRONTEND=noninteractive \
 	apt-get update && apt-get install -yq --no-install-recommends \
 	apt-transport-https \
 	bash-completion \
+	ca-certificates \
+	curl \
+	git \
+	gnupg2 \
+	software-properties-common \
+	sshfs \
 	tmux \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# install docker
-RUN curl -sSL https://get.docker.com/ | sh
+# add docker-ce repo
+RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add - \
+	&& echo "deb [arch=armhf] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" | \
+	tee /etc/apt/sources.list.d/docker.list
+	
+# install docker-ce
+RUN DEBIAN_FRONTEND=noninteractive \
+	apt-get update && apt-get install -y --no-install-recommends \
+	docker-ce \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # work in app dir for cloud9
 WORKDIR /usr/src/app
