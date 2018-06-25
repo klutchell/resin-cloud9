@@ -10,7 +10,7 @@ services:
   cloud9:
     build: ./cloud9
     ports:
-      - '22:22'
+      - '80:80'
     volumes:
       - 'cloud9_workspace:/workspace'
     privileged: true
