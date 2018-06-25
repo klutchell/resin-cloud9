@@ -7,7 +7,7 @@ ENV INITSYSTEM on
 
 # set c9 workspace and port
 ENV C9_WORKSPACE /workspace
-ENV C9_PORT 8080
+ENV C9_PORT 80
 
 # set the correct uname for rpi3
 RUN cp "$(which uname)" "/bin/uname.orig" \
