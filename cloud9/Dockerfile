@@ -1,4 +1,4 @@
-FROM resin/raspberrypi3-node:8.11.2
+FROM resin/raspberrypi3-node:8
 
 LABEL maintainer="kylemharding@gmail.com"
 

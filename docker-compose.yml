@@ -3,6 +3,7 @@ version: '2.1'
 volumes:
 
   cloud9_workspace:
+  cloud9_home:
   volumerize_cache:
 
 services:
@@ -13,6 +14,7 @@ services:
       - '80:80'
     volumes:
       - 'cloud9_workspace:/workspace'
+      - 'cloud9_home:/root'
     privileged: true
 
   volumerize:
@@ -20,5 +22,6 @@ services:
     volumes:
       - 'volumerize_cache:/volumerize-cache'
       - 'cloud9_workspace:/volumes/cloud9_workspace:ro'
+      - 'cloud9_home:/volumes/cloud9_home:ro'
     environment:
       - 'VOLUMERIZE_SOURCE=/volumes'
