@@ -22,7 +22,6 @@ see https://docs.resin.io/learn/getting-started
 |---|---|---|
 |`cloud9`|`C9_USER`|`root`|
 |`cloud9`|`C9_PASS`|`resin`|
-|`cloud9`|`C9_PORT`|`80`|
 |`volumerize`|`AWS_ACCESS_KEY_ID`|`QQWDQIWIDO1QO`|
 |`volumerize`|`AWS_SECRET_ACCESS_KEY`|`ewlfkwkejflkjwlkej3fjw381`|
 |`volumerize`|`PASSPHRASE`|`secretgpgpassword`|

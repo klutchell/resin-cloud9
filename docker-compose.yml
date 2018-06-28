@@ -11,7 +11,7 @@ services:
   cloud9:
     image: klutchell/cloud9:armhf
     ports:
-      - '80:80'
+      - '80:8080'
     volumes:
       - 'cloud9_workspace:/workspace'
       - 'cloud9_home:/root'
