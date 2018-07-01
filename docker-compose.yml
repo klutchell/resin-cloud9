@@ -9,7 +9,7 @@ volumes:
 services:
 
   cloud9:
-    image: klutchell/cloud9:armhf-1.1.2
+    image: klutchell/cloud9:armhf-1.1.3
     ports:
       - '80:8080'
     volumes:
