@@ -16,6 +16,7 @@ services:
       - 'cloud9_workspace:/workspace'
       - 'cloud9_home:/root'
     privileged: true
+    network: host
 
   volumerize:
     image: klutchell/volumerize:armhf
