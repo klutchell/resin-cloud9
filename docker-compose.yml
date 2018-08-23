@@ -4,12 +4,11 @@ volumes:
 
   cloud9_workspace:
   cloud9_home:
-  volumerize_cache:
 
 services:
 
   cloud9:
-    image: klutchell/cloud9:armhf-1.1.6
+    image: klutchell/cloud9:armhf
     ports:
       - '80:8080'
     volumes:
@@ -17,11 +16,10 @@ services:
       - 'cloud9_home:/root'
     privileged: true
 
-  volumerize:
-    image: klutchell/volumerize:armhf
+  duplicati:
+    image: lsioarmhf/duplicati
+    ports:
+      - '8200:8200'
     volumes:
-      - 'volumerize_cache:/volumerize-cache'
-      - 'cloud9_workspace:/volumes/cloud9_workspace:ro'
-      - 'cloud9_home:/volumes/cloud9_home:ro'
-    environment:
-      - 'VOLUMERIZE_SOURCE=/volumes'
+      - 'cloud9_workspace:/source/cloud9_workspace:ro'
+      - 'cloud9_home:/source/cloud9_home:ro'
