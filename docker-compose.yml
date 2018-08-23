@@ -15,6 +15,7 @@ services:
       - 'cloud9_workspace:/workspace'
       - 'cloud9_home:/root'
     privileged: true
+    network_mode: host
 
   duplicati:
     image: lsioarmhf/duplicati
