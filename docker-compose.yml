@@ -4,6 +4,7 @@ volumes:
 
   cloud9_workspace:
   cloud9_home:
+  duplicati-data:
 
 services:
 
@@ -24,3 +25,4 @@ services:
     volumes:
       - 'cloud9_workspace:/source/cloud9_workspace:ro'
       - 'cloud9_home:/source/cloud9_home:ro'
+      - 'duplicati-data:/config'
